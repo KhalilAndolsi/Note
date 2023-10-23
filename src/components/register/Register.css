@@ -1,0 +1,16 @@
+.box :where(input[type="text"], input[type="password"]) {
+  @apply border-2 border-zinc-900 w-full p-2 rounded-md;
+}
+.box input[type="submit"] {
+  @apply font-bold w-full p-2 rounded-md cursor-pointer transition-all bg-zinc-900 text-white disabled:bg-zinc-500;
+}
+
+.box .hidepsw {
+  position: absolute;
+  width: fit-content;
+  z-index: 99;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

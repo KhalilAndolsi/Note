@@ -1,0 +1,22 @@
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 10px;
+  overflow: hidden scroll;
+}
+
+.notes::-webkit-scrollbar {
+  display: none;
+}
+
+textarea::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+  cursor: pointer;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 5px;
+}
