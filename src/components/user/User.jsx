@@ -104,16 +104,18 @@ function User() {
   };
 
   const deleteAccount = async () => {
-    axios
-    .delete(`${process.env.REACT_APP_API_URL}delete/${data._id}`)
-    .then((response) => {
-      alert("your account has been deleted");
-      localStorage.clear();
-      window.location.href = "/login";
-    })
-    .catch((error) => {
-      alert("your account has not been deleted!");
-    });
+    if (window.confirm("Are you sure you want to delete your account ?")) {
+      axios
+      .delete(`${process.env.REACT_APP_API_URL}delete/${data._id}`)
+      .then((response) => {
+        alert("your account has been deleted");
+        localStorage.clear();
+        window.location.href = "/login";
+      })
+      .catch((error) => {
+        alert("your account has not been deleted!");
+      });
+    }
   }
 
   const logoutAccount = () => {
