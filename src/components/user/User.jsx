@@ -138,7 +138,7 @@ function User() {
               <button
                 key={i}
                 onClick={() => showNote(i)}
-                className="p-2 border-2 border-black rounded-md font-semibold"
+                className="p-2 border-2 border-black rounded-md font-semibold hidden"
               >
                 {note.title}
               </button>
