@@ -4,6 +4,7 @@ import eyeOpen from "../../assets/icons/eyeOpen.svg"
 import eyeClose from "../../assets/icons/eyeClose.svg"
 import { Link } from 'react-router-dom'
 import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
 
 function Register() {
   const [hidePassword, setHidePassword] = useState(false)
@@ -25,12 +26,12 @@ function Register() {
     await axios.post(`${process.env.REACT_APP_API_URL}register`, userData)
       .then((res) => {
           localStorage.setItem("user", JSON.stringify(userData))
-          alert("Your Register was successfully")
+          toast.success("Your Register was successfully")
           window.location.href = "../"
       })
       .catch((err) => {
         console.clear()
-        alert("Your Register was rejected please try again with correct username and password!")
+        toast.error("Your Register was rejected please try again with correct username and password!")
       })
     
   }
@@ -38,6 +39,7 @@ function Register() {
   return (
     <>
       <div className="container h-screen flex justify-center items-center mx-auto">
+        <Toaster position="top-right"/>
         <div className="box p-2 h-min rounded-lg border-2 border-zinc-900 w-[95%] md:w-96">
           <h2 className='font-semibold text-2xl uppercase text-center mb-6 p-3'>Register</h2>
           <form className='flex flex-col gap-3' onSubmit={handleLoginSubmit}>

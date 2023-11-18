@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./User.css";
+import toast, { Toaster } from 'react-hot-toast';
 
 function User() {
   if (localStorage.getItem("user") !== null) {
@@ -51,10 +52,10 @@ function User() {
     axios
       .put(`${process.env.REACT_APP_API_URL}note/${data._id}`, { notes })
       .then((response) => {
-        alert("note is saved successfully");
+        toast.success("note is saved successfully");
       })
       .catch((error) => {
-        alert("note is not saved!");
+        toast.error("note is not saved!");
       });
   };
 
@@ -66,10 +67,10 @@ function User() {
       .put(`${process.env.REACT_APP_API_URL}note/${data._id}`, { notes })
       .then((response) => {
         getUserData();
-        alert("note is deleted successfully");
+        toast.success("note is deleted successfully");
       })
       .catch((error) => {
-        alert("note is not deleted!");
+        toast.error("note is not deleted!");
       });
   };
 
@@ -89,18 +90,22 @@ function User() {
           })
           .then((response) => {
             getUserData();
-            alert("new note is created successfully");
+            toast.success("new note is created successfully");
           })
           .catch((error) => {
-            alert("new note is not created!");
+            toast.error("new note is not created!");
           });
       }
     }
   };
 
-  const copyNote = () => {
-    navigator.clipboard.writeText(noteBody);
-    alert("It has been copied")
+  const copyNote = async () => {
+    try {
+      await navigator.clipboard.writeText(noteBody);
+      toast.success('Content copied to clipboard');
+    } catch (err) {
+      toast.error('Failed to copy: ', err);
+    }
   };
 
   const deleteAccount = async () => {
@@ -108,12 +113,12 @@ function User() {
       axios
       .delete(`${process.env.REACT_APP_API_URL}delete/${data._id}`)
       .then((response) => {
-        alert("your account has been deleted");
+        toast.success("your account has been deleted");
         localStorage.clear();
         window.location.href = "/login";
       })
       .catch((error) => {
-        alert("your account has not been deleted!");
+        toast.error("your account has not been deleted!");
       });
     }
   }
@@ -126,6 +131,7 @@ function User() {
     <>
       {!!data._id ? (
         <div className="">
+          <Toaster position="top-right"/>
           <header>
             <h1 className=" text-center p-3 font-semibold text-2xl">NOTE</h1>
             <h2 className="container m-auto py-3 px-2 font-semibold">
