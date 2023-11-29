@@ -1,22 +1,26 @@
 .notes {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-rows: repeat(auto-fill, 50px);
+  grid-template-rows: repeat(auto-fill, max(50px));
   gap: 10px;
   overflow: hidden scroll;
+}
+
+.notes button {
+  height: 50px;
 }
 
 .notes::-webkit-scrollbar {
   display: none;
 }
 
-textarea::-webkit-scrollbar {
+::-webkit-scrollbar {
   background-color: transparent;
   width: 10px;
   cursor: pointer;
 }
 
-textarea::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: black;
   border-radius: 5px;
 }
