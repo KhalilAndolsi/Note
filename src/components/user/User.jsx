@@ -99,9 +99,14 @@ function User() {
     }
   };
 
-  const copyNote = async () => {
+  const copyNote = () => {
     try {
-      await navigator.clipboard.writeText(noteBody);
+      const input = document.createElement("input");
+      input.setAttribute("value", noteBody);
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      input.remove();
       toast.success('Content copied to clipboard');
     } catch (err) {
       toast.error('Failed to copy: ', err);
